@@ -16,6 +16,7 @@ Team.init({
   teamName: {
     type: STRING(255),
     allowNull: false,
+    field: 'team_name',
   },
 }, {
   // ... Outras configs
