@@ -7,4 +7,4 @@ const findAll = async () => {
 
 export default {
   findAll,
-}
+};
