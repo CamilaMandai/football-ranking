@@ -7,14 +7,14 @@ class Team extends Model {
 }
 
 Team.init({
-  id:{
+  id: {
     type: INTEGER,
     primaryKey: true,
     allowNull: false,
     autoIncrement: true,
   },
   teamName: {
-    type:STRING(255),
+    type: STRING(255),
     allowNull: false,
   },
 }, {
