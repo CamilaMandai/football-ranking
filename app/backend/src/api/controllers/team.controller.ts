@@ -1,16 +1,17 @@
 import * as express from 'express';
+import ITeamController from '../interfaces/ITeamController';
 // import ITeam from '../interfaces/ITeams';
 import IServiceTeam from '../interfaces/ITeamServices';
 // import teamService from '../services/team.service';
 
-export default class TeamController {
+export default class TeamController implements ITeamController {
   private _service: IServiceTeam;
 
   constructor(service: IServiceTeam) {
     this._service = service;
   }
 
-  async readAll(req: express.Request, res: express.Response) {
+  async findAll(_req: express.Request, res: express.Response) {
     const result = await this._service.findAll();
     return res.status(200).json(result);
   }
