@@ -4,7 +4,7 @@
   "description": "",
   "main": "./build/server",
   "scripts": {
-    "build": "/bin/sh tsc_eval.sh",
+    "build": "npx -y tsc",
     "test": "mocha -r ts-node/register ./src/tests/*$NAME*.{test,spec}.ts -t 10000 --exit",
     "test:coverage": "nyc npm run test",
     "test:coverage:json": "nyc --reporter=json-summary npm run test",
@@ -49,7 +49,7 @@
     "sinon": "13.0.1",
     "ts-node": "10.7.0",
     "ts-node-dev": "1.1.8",
-    "typescript": "4.4.4"
+    "typescript": "^4.4.4"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
