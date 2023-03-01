@@ -10,4 +10,3 @@ const teamController = new TeamController(teamService);
 router.get('/', teamController.readAll);
 
 export default router;
-

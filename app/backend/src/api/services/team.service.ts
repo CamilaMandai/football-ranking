@@ -4,7 +4,7 @@ import Team from '../../database/models/Team';
 import IServiceTeam from '../interfaces/ITeamServices';
 
 export default class TeamService implements IServiceTeam {
-  protected model: ModelStatic<Team> = Team
+  protected model: ModelStatic<Team> = Team;
 
   // create(dto: ITeam): Promise<Team> {
   //   throw new Error('Method not implemented.');
