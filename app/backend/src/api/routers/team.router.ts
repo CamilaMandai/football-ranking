@@ -7,5 +7,5 @@ const teamService = new TeamService();
 const teamController = new TeamController(teamService);
 
 router.get('/', (req, res) => teamController.findAll(req, res));
-// router.get('/', (req, res) => res.status(200).json(teamController.findAll()));
+router.get('/:id', (req, res) => teamController.findById(req, res));
 export default router;
