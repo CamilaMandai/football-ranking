@@ -1,7 +1,7 @@
 import * as sinon from 'sinon';
 import * as chai from 'chai';
-import { Model } from 'sequelize';
-import IUser from '../api/interfaces/IUser';
+import jwtUtils from '../utils/jwt';
+
 
 // @ts-ignore
 import chaiHttp = require('chai-http');
@@ -20,28 +20,6 @@ describe('Testes das rotas de /login', () => {
   // })
 
   it('teste da rota post /login com password menor que 6', async() => {
-    // const token = {
-    //   token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjU0NTI3MTg5fQ.XS_9AA82iNoiVaASi0NtJpqOQ_gHSHhxrpIdigiT-fc" // Aqui deve ser o token gerado pelo backend.
-    // }
-    // sinon.stub(LoginService, 'validateUser').resolves(token);
-    // const users = [
-    //   {
-    //     email: "admin@admin.com",
-    //     id: 1,
-    //     password: "$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW",
-    //     role: "admin",
-    //     username: "Admin",
-    //   },
-    //   {
-    //     email: "user@user.com",
-    //     id: 2,
-    //     password: "$2a$08$Y8Abi8jXvsXyqm.rmp0B.uQBA5qUz7T6Ghlg/CvVr/gLxYj5UAZVO",
-    //     role: "user",
-    //     username: "User",
-    //   }
-    // ] as IUser[];
-    // sinon.stub(Model, 'findAll').resolves(users));
-    // stub do bcrypt retornando true
     const user = {
       email: 'user@email.com',
       senha: 12346,
@@ -64,5 +42,32 @@ describe('Testes das rotas de /login', () => {
     //assertion
     expect(response.status).to.be.equal(400);
 
+  })
+
+  it('teste da rota post /login com password menor que 6', async() => {
+    const user = 
+      {
+        email: "user@gmail.com",
+        id: 1,
+        password: "$2a$10$Sapoi0qkzFitwcsE1avkLuSgZhjC0SXOd6JJ5n5NvMwhb56uLRsua",
+        role: "admin",
+        username: "Admin",
+      } as User;
+    
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJ1c2VyIiwicm9sZSI6InVzZXIiLCJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkU2Fwb2kwcWt6Rml0d2NzRTFhdmtMdVNnWmhqQzBTWE9kNkpKNW41TnZNd2hiNTZ1TFJzdWEiLCJpYXQiOjE2Nzc3OTQ1NjJ9.DvpLrdxeymgsD5uiA8t1I9Nz5lYv9sRWnr_CwPGk8G8'
+
+    sinon.stub(User, 'findOne').resolves(user);
+    sinon.stub(jwtUtils, 'generateToken').resolves(token);
+  
+    const userLogin = {
+      email: 'user@gmail.com',
+      senha: 'baconzitos',
+    }
+
+    //action
+    const response = await chai.request(app).post('/login').send(userLogin);
+    //assertion
+    expect(response.status).to.be.equal(200);
+    expect(response.body).to.be.equal({token});
   })
 });
