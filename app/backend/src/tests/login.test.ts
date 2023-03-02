@@ -28,7 +28,7 @@ describe('Testes das rotas de /login', () => {
     //action
     const response = await chai.request(app).post('/login').send(user);
     //assertion
-    expect(response.status).to.be.equal(400);
+    expect(response.status).to.be.equal(401);
 
   })
   it('teste da rota post /login com password menor que 6', async() => {
@@ -40,7 +40,7 @@ describe('Testes das rotas de /login', () => {
     //action
     const response = await chai.request(app).post('/login').send(user);
     //assertion
-    expect(response.status).to.be.equal(400);
+    expect(response.status).to.be.equal(401);
 
   })
 

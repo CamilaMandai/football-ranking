@@ -4,7 +4,7 @@ import User from '../database/models/User';
 
 const jwt = <any>_jsonwebtoken;
 
-const TOKEN_SECRET = process.env.TOKEN_SECRET || 'secretJWT';
+const TOKEN_SECRET = process.env.JWT_SECRET || 'jwt_secret';
 
 const jwtConfig = {
   // expiresIn: '1m',
