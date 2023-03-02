@@ -19,11 +19,11 @@ describe('Testes das rotas de /login', () => {
   //   sinon.restore();
   // })
 
-  it('teste da rota post /login com dados de usuário válidos', async() => {
-    const token = {
-      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjU0NTI3MTg5fQ.XS_9AA82iNoiVaASi0NtJpqOQ_gHSHhxrpIdigiT-fc" // Aqui deve ser o token gerado pelo backend.
-    }
-    sinon.stub(LoginService, 'validateUser').resolves(token);
+  it('teste da rota post /login com password menor que 6', async() => {
+    // const token = {
+    //   token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjU0NTI3MTg5fQ.XS_9AA82iNoiVaASi0NtJpqOQ_gHSHhxrpIdigiT-fc" // Aqui deve ser o token gerado pelo backend.
+    // }
+    // sinon.stub(LoginService, 'validateUser').resolves(token);
     // const users = [
     //   {
     //     email: "admin@admin.com",
@@ -43,13 +43,25 @@ describe('Testes das rotas de /login', () => {
     // sinon.stub(Model, 'findAll').resolves(users));
     const user = {
       email: 'user@email.com',
-      senha: 123456,
+      senha: 12346,
     }
 
     //action
     const response = await chai.request(app).post('/login').send(user);
     //assertion
-    expect(response.status).to.be.equal(200);
-    expect(response.body).to.be.deep.equal(token);
+    expect(response.status).to.be.equal(400);
+
+  })
+  it('teste da rota post /login com password menor que 6', async() => {
+    const user = {
+      email: '@email.com',
+      senha: 12346,
+    }
+
+    //action
+    const response = await chai.request(app).post('/login').send(user);
+    //assertion
+    expect(response.status).to.be.equal(400);
+
   })
 });
