@@ -60,6 +60,7 @@ describe('Testes das rotas de /teams', () => {
     //   { teamName: 'Corinthians' } as Team,
     // ];  
     // sinon.stub(Model, 'findAll').resolves(teams);
+ //    sinon.stub(Team, 'findAll').resolves(teams);
 
     //action
     const response = await chai.request(app).get('/teams/1');

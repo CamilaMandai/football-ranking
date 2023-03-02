@@ -13,7 +13,6 @@ export default class LoginController {
     const hash = await this._service.validateUser(email, password);
     if (hash) {
       return res.status(200).json({ token: hash });
-      // return res.redirect('/matches');
     }
     return res.status(401).json({ message: 'Invalid email or password' });
   }

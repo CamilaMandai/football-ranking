@@ -8,7 +8,7 @@ import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 
-import LoginService from '../api/services/login.service';
+import User from '../database/models/User';
 
 chai.use(chaiHttp);
 
@@ -41,6 +41,7 @@ describe('Testes das rotas de /login', () => {
     //   }
     // ] as IUser[];
     // sinon.stub(Model, 'findAll').resolves(users));
+    // stub do bcrypt retornando true
     const user = {
       email: 'user@email.com',
       senha: 12346,
