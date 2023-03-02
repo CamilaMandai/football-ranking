@@ -14,6 +14,6 @@ export default class LoginController {
     if (hash) {
       return res.status(200).json({ token: hash });
     }
-    return res.status(403).json({ message: 'Email and/or password invalid' });
+    return res.status(401).json({ message: 'Invalid email or password' });
   }
 }
