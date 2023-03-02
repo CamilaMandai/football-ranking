@@ -18,14 +18,14 @@ describe('Testes das rotas de /login', () => {
   //   sinon.restore();
   // })
 
-  it('teste da camada controller rota POST /login', async() => {
+  it('teste da rota post /login com dados de usuário válidos', async() => {
     const token = {
       token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjU0NTI3MTg5fQ.XS_9AA82iNoiVaASi0NtJpqOQ_gHSHhxrpIdigiT-fc" // Aqui deve ser o token gerado pelo backend.
     }
     sinon.stub(LoginService, 'validateUser').resolves(token);
     const user = {
       email: 'user@email.com',
-      senha: 12345,
+      senha: 123456,
     }
 
     //action

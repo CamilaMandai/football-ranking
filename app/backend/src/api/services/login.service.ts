@@ -11,7 +11,10 @@ export default class LoginService implements ILoginService {
     const validUser = allUsers.find((user) =>
       user.email === email && bcrypt.compareSync(password, user.password));
     if (validUser) {
-      return validUser.password;
+      const saltRounds = 10;
+      const myPlaintextPassword = password;
+      const token = await bcrypt.hash(myPlaintextPassword, saltRounds);
+      return token;
     }
     return null;
   }
