@@ -1,10 +1,12 @@
-// import * as express from 'express';
+import * as express from 'express';
 // import authorization from '../middlewares/auth.middleware';
-// import MatchesController from '../controllers/matches.controller';
+import MatchesController from '../controllers/matches.controller';
+import MatchesService from '../services/matches.service';
 
-// const router = express.Router();
-// const matchesController = new MatchesController();
+const router = express.Router();
+const matchesService = new MatchesService();
+const matchesController = new MatchesController(matchesService);
 
-// router.get('/', authorization, (req, res) => matchesController.findAll(req, res));
+router.get('/', (req, res) => matchesController.findAll(req, res));
 
-// export default router;
+export default router;
