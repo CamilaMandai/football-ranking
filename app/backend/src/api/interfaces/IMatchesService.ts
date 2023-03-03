@@ -6,5 +6,6 @@ export default interface IMatchesService {
   finishMatch(id: number): Promise<string>;
   updateMatchScore(id: number, score: { homeTeamGoals: string, awayTeamGoals: string })
   : Promise<null>
+  createMatch(match: Match): Promise<Match>;
   // findById(id:number): Promise<Match | null>;
 }

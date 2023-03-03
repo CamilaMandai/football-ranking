@@ -35,4 +35,10 @@ export default class MatchesController {
     await this._service.updateMatchScore(Number(id), { homeTeamGoals, awayTeamGoals });
     return res.status(200).json({ message: 'score atualizado' });
   }
+
+  async createMatch(req: Request, res: Response): Promise<Response> {
+    const newMatch = req.body;
+    const addedUser = await this._service.createMatch(newMatch);
+    return res.status(201).json(addedUser);
+  }
 }
