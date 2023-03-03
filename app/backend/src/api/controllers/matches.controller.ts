@@ -9,16 +9,17 @@ export default class MatchesController {
   }
 
   async findAll(req: Request, res: Response): Promise<Response> {
+    const { inProgress } = req.query;
+    if (inProgress) {
+      return this.findByProgress(req, res);
+    }
     const matches = await this._service.findAll();
     return res.status(200).json(matches);
   }
 
-  // async findById(req: Request, res: Response): Promise<Response> {
-  //   const { id } = req.params;
-  //   const match = await this._service.findById(Number(id));
-  //   if (match) {
-  //     return res.status(200).json(match);
-  //   }
-  //   return res.status(400).json({ message: 'not found' });
-  // }
+  async findByProgress(req: Request, res: Response): Promise<Response> {
+    const { inProgress } = req.query;
+    const matches = await this._service.findByProgress(String(inProgress));
+    return res.status(200).json(matches);
+  }
 }

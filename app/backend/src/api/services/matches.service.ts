@@ -21,8 +21,22 @@ export default class MatchService implements IMatchesService {
     return matches;
   }
 
-  // async findById(id: number): Promise<Match | null> {
-  //   const match = await this.model.findByPk(id);
-  //   return match;
-  // }
+  async findByProgress(progress: string): Promise<Match[]> {
+    const inProgress = progress === 'true';
+    const matches = await this.model.findAll(
+      {
+        where: { inProgress },
+        include: [{
+          model: Team,
+          as: 'homeTeam',
+          attributes: { exclude: ['id'] },
+        }, {
+          model: Team,
+          as: 'awayTeam',
+          attributes: { exclude: ['id'] },
+        }],
+      },
+    );
+    return matches;
+  }
 }
