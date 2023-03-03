@@ -21,8 +21,8 @@ export default class MatchService implements IMatchesService {
     return matches;
   }
 
-  async findById(id: number): Promise<Match | null> {
-    const match = await this.model.findByPk(id);
-    return match;
-  }
+  // async findById(id: number): Promise<Match | null> {
+  //   const match = await this.model.findByPk(id);
+  //   return match;
+  // }
 }

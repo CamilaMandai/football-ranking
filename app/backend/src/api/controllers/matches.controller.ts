@@ -13,12 +13,12 @@ export default class MatchesController {
     return res.status(200).json(matches);
   }
 
-  async findById(req: Request, res: Response): Promise<Response> {
-    const { id } = req.params;
-    const match = await this._service.findById(Number(id));
-    if (match) {
-      return res.status(200).json(match);
-    }
-    return res.status(400).json({ message: 'not found' });
-  }
+  // async findById(req: Request, res: Response): Promise<Response> {
+  //   const { id } = req.params;
+  //   const match = await this._service.findById(Number(id));
+  //   if (match) {
+  //     return res.status(200).json(match);
+  //   }
+  //   return res.status(400).json({ message: 'not found' });
+  // }
 }
