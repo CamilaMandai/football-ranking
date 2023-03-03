@@ -28,4 +28,11 @@ export default class MatchesController {
     const message = await this._service.finishMatch(Number(id));
     return res.status(200).json({ message });
   }
+
+  async updateMatchScore(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const { homeTeamGoals, awayTeamGoals } = req.body;
+    await this._service.updateMatchScore(Number(id), { homeTeamGoals, awayTeamGoals });
+    return res.status(200).json();
+  }
 }
