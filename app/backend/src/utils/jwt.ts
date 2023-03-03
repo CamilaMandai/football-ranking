@@ -20,15 +20,11 @@ const generateToken = (payload: User) => {
 };
 
 const decodeToken = (token: string) => {
-  if (!token) {
-    throw new Error('Undefined Token');
-  }
-
   try {
     const result = jwt.verify(token, TOKEN_SECRET);
     return result;
   } catch (err) {
-    console.log(err);
+    // console.log('deu ruim');
     return null;
   }
 };

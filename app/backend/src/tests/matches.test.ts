@@ -20,7 +20,7 @@ describe('Testes das rotas de /matches', () => {
     //expect(response.body).to.be.deep.equal(teams);
   })
 
-  it('teste da camada controller rota GET /teams', async() => {
+  it('teste da camada controller rota GET /matches', async() => {
 
     const response = await chai.request(app).get('/matches?inProgress=true');
     //assertion
@@ -44,4 +44,11 @@ describe('Testes das rotas de /matches', () => {
 //     expect(response.status).to.be.equal(200);
 //     //expect(response.body).to.be.deep.equal(teams);
 //   })
+  it('teste da camada controller rota PATCH /matches/:id/finish', async() => {
+
+    const response = await chai.request(app).patch('/matches/3/finish');
+    //assertion
+    expect(response.status).to.be.equal(200);
+    //expect(response.body).to.be.deep.equal(teams);
+  })
 });
