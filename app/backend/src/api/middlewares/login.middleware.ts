@@ -7,10 +7,10 @@ export default function checkEmailPassword(req: Request, res: Response, next: Ne
   }
   const regEmail = /^\w+@[a-zA-Z_]+?/;
   if (!regEmail.test(email)) {
-    return res.status(400).json({ message: 'Invalid email or password' });
+    return res.status(401).json({ message: 'Invalid email or password' });
   }
   if (password.length < 6) {
-    return res.status(400).json({ message: 'Invalid email or password' });
+    return res.status(401).json({ message: 'Invalid email or password' });
   }
   return next();
 }

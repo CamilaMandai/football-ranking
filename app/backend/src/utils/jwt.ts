@@ -7,7 +7,7 @@ const jwt = <any>_jsonwebtoken;
 const TOKEN_SECRET = process.env.JWT_SECRET || 'jwt_secret';
 
 const jwtConfig = {
-  // expiresIn: '1m',
+  expiresIn: '10d',
   algorithm: 'HS256',
 };
 

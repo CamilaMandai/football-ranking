@@ -11,8 +11,7 @@ const authMiddlewareToken = (req: Request, res: Response, next: NextFunction) =>
     return res.status(401).json({ message: 'Token not found' });
   }
   const user = decodeToken(authorization);
-  const currDate = new Date();
-  if (!user || user.exp < (currDate.getTime() / 1000)) {
+  if (!user) {
     return res.status(401).json({ message: 'Token must be a valid token' });
   }
   req.body.user = user;
