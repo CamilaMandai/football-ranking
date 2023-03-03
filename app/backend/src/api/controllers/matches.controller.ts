@@ -33,6 +33,6 @@ export default class MatchesController {
     const { id } = req.params;
     const { homeTeamGoals, awayTeamGoals } = req.body;
     await this._service.updateMatchScore(Number(id), { homeTeamGoals, awayTeamGoals });
-    return res.status(200).json();
+    return res.status(200).json({ message: 'score atualizado' });
   }
 }
