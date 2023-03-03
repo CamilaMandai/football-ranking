@@ -5,6 +5,7 @@ import IMatchesService from '../interfaces/IMatchesService';
 
 export default class MatchService implements IMatchesService {
   protected model: ModelStatic<Match> = Match;
+  protected teamModel: ModelStatic<Team> = Team;
 
   async findAll(): Promise<Match[]> {
     const matches = await this.model.findAll({
@@ -57,5 +58,10 @@ export default class MatchService implements IMatchesService {
     const newMatch = await this.model.create({
       homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals, inProgress: true });
     return newMatch;
+  }
+
+  async isRegistered(id: number): Promise<boolean> {
+    const team = await this.teamModel.count({ where: { id } });
+    return team === 1;
   }
 }

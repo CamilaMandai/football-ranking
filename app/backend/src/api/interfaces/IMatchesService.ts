@@ -7,5 +7,6 @@ export default interface IMatchesService {
   updateMatchScore(id: number, score: { homeTeamGoals: string, awayTeamGoals: string })
   : Promise<null>
   createMatch(match: Match): Promise<Match>;
+  isRegistered(id: number): Promise<boolean>;
   // findById(id:number): Promise<Match | null>;
 }

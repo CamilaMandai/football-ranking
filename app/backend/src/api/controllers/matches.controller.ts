@@ -38,6 +38,12 @@ export default class MatchesController {
 
   async createMatch(req: Request, res: Response): Promise<Response> {
     const newMatch = req.body;
+    const { homeTeamId, awayTeamId } = newMatch;
+    const isHomeTeamRegistered = await this._service.isRegistered(Number(homeTeamId));
+    const isAwayTeamRegistered = await this._service.isRegistered(Number(awayTeamId));
+    if (!isHomeTeamRegistered || !isAwayTeamRegistered) {
+      return res.status(404).json({ message: 'There is no team with such id!' });
+    }
     const addedUser = await this._service.createMatch(newMatch);
     return res.status(201).json(addedUser);
   }
