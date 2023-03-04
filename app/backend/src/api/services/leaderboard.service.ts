@@ -29,7 +29,7 @@ export default class LeaderBoardService {
   }
 
   async teamStatistic(id: number): Promise<ITeamStatistic> {
-    const team = await this.teamModel.findOne({ where:{ id }, attributes: { exclude: ['id'] } });
+    const team = await this.teamModel.findOne({ where: { id }, attributes: { exclude: ['id'] } });
     const matches = await this.model.findAll({
       where: { homeTeamId: id },
       raw: true });
