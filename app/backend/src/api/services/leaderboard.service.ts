@@ -61,7 +61,7 @@ export default class LeaderBoardService {
       const goalsBalanceB = (a.goalsFavor - a.goalsOwn);
       if (goalsBalanceA !== goalsBalanceB) return goalsBalanceB - goalsBalanceA;
       if (b.goalsFavor !== a.goalsFavor) return b.goalsFavor - a.goalsFavor;
-      return a.goalsOwn - b.goalsOwn;
+      return b.goalsOwn - a.goalsOwn;
     });
     // return results;
   }
