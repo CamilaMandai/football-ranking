@@ -16,12 +16,13 @@ export default class LeaderBoardService {
           acc.tV += 1; acc.tP += 3;
         }
         if (curr.homeTeamGoals === curr.awayTeamGoals) {
-          acc.tD += 1;
-          acc.tP += 1;
+          acc.tD += 1; acc.tP += 1;
         }
         if (curr.homeTeamGoals < curr.awayTeamGoals) acc.tL += 1;
-        acc.gF += curr.homeTeamGoals; acc.gO += curr.awayTeamGoals;
-        acc.tG += 1; return acc;
+        acc.gF += curr.homeTeamGoals;
+        acc.gO += curr.awayTeamGoals;
+        acc.tG += 1;
+        return acc;
       },
       { tP: 0, tG: 0, tV: 0, tD: 0, tL: 0, gF: 0, gO: 0 },
     );
@@ -31,10 +32,11 @@ export default class LeaderBoardService {
   async teamStatistic(id: number): Promise<ITeamStatistic> {
     const team = await this.teamModel.findOne({ where: { id }, attributes: { exclude: ['id'] } });
     const matches = await this.model.findAll({
-      where: { homeTeamId: id },
-      raw: true });
-    const points = this.calculatePoints(matches); const { tP, tG, tV, tD, tL, gF, gO } = points;
-    const result = { name: team?.teamName,
+      where: { homeTeamId: id, inProgress: false }, raw: true });
+    const points = this.calculatePoints(matches); 
+    const { tP, tG, tV, tD, tL, gF, gO } = points;
+    const result = {
+      name: team?.teamName,
       totalPoints: tP,
       totalGames: tG,
       totalVictories: tV,
@@ -42,6 +44,8 @@ export default class LeaderBoardService {
       totalLosses: tL,
       goalsFavor: gF,
       goalsOwn: gO,
+      goalsBalance: gF - gO,
+      efficiency: ((tP / (tG * 3)) * 100).toFixed(2),
     };
     return result;
   }
