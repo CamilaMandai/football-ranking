@@ -33,7 +33,7 @@ export default class LeaderBoardService {
     const team = await this.teamModel.findOne({ where: { id }, attributes: { exclude: ['id'] } });
     const matches = await this.model.findAll({
       where: { homeTeamId: id, inProgress: false }, raw: true });
-    const points = this.calculatePoints(matches); 
+    const points = this.calculatePoints(matches);
     const { tP, tG, tV, tD, tL, gF, gO } = points;
     const result = {
       name: team?.teamName,
