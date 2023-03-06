@@ -27,23 +27,7 @@ describe('Testes das rotas de /matches', () => {
     expect(response.status).to.be.equal(200);
     //expect(response.body).to.be.deep.equal(teams);
   })
-//   it('teste da camada controller rota GET /teams/:id', async() => {
-//     // const app = new App();
-//     // const teams = [ 
-//     //   { teamName: 'Avaí/Kindermann' } as Team,
-//     //   { teamName: 'Bahia' } as Team,
-//     //   { teamName: 'Botafogo' } as Team,
-//     //   { teamName: 'Corinthians' } as Team,
-//     // ];  
-//     // sinon.stub(Model, 'findAll').resolves(teams);
-//  //    sinon.stub(Team, 'findAll').resolves(teams);
 
-//     //action
-//     const response = await chai.request(app).get('/teams/1');
-//     //assertion
-//     expect(response.status).to.be.equal(200);
-//     //expect(response.body).to.be.deep.equal(teams);
-//   })
   it('teste da camada controller rota PATCH /matches/:id/finish', async() => {
 
     const response = await chai.request(app).patch('/matches/3/finish');
