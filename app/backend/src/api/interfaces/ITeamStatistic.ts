@@ -7,8 +7,8 @@ export default interface ITeamStatistic {
   totalLosses: number,
   goalsFavor: number,
   goalsOwn: number,
-  goalsBalance?: number,
-  efficiency?: string,
+  goalsBalance: number,
+  efficiency: string,
 }
 
 export interface IMatchesTeam {
